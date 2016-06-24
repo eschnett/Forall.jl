@@ -4,8 +4,11 @@
 
 Provide a function `forall(f, iter)`
 
-The function ```Julia forall(f, iter) ``` iterates over `iter`,
-applying `f` to each element. This corresponds to
+The function
+```Julia
+forall(f, iter)
+```
+iterates over `iter`, applying `f` to each element. This corresponds to
 ```Julia
 for x ∈ iter
     f(x)
