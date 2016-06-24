@@ -8,7 +8,10 @@ julia:
   - nightly
 notifications:
   email: false
-# uncomment the following lines to override the default test script
-#script:
-#  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-#  - julia -e 'Pkg.clone(pwd()); Pkg.build("Forall"); Pkg.test("Forall"; coverage=true)'
+install:
+  - julia -e 'Pkg.add("Coverage")'
+script:
+  - julia -e 'Pkg.clone(pwd()); Pkg.build("Forall")'
+  - julia --check-bounds=yes -e 'Pkg.test("Forall", coverage=true)'
+after_success:
+  - julia -e 'cd(Pkg.dir("Forall")); using Coverage; Codecov.submit(process_folder())'
