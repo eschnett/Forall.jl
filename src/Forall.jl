@@ -9,16 +9,22 @@ export forall
 """
     forall(f, iter)
 
-Iterate over `iter`, applying `f` to each element. This corresponds to
+Iterate over `iter`, applying `f` to each element. The call
 
-    for x ∈ iter
+    forall(iter) do x
         f(x)
     end
 
-This is also equivalent to `(map(f, iter); nothing)`.
+is equivalent to
+
+    for x in iter
+        f(x)
+    end
+
+This also corresponds to `(map(f, iter); nothing)`.
 """
 function forall(f::Callable, iter)
-    for x ∈ iter
+    for x in iter
         f(x)
     end
 end

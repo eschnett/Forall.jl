@@ -10,10 +10,16 @@ The function
 ```Julia
 forall(f, iter)
 ```
-iterates over `iter`, applying `f` to each element. This corresponds to
+iterates over `iter`, applying `f` to each element. The call
 ```Julia
-for x ∈ iter
+forall(iter) do x
     f(x)
 end
 ```
-This is also equivalent to `(map(f, iter); nothing)`.
+is equivalent to
+```Julia
+for x in iter
+    f(x)
+end
+```
+This also corresponds to `(map(f, iter); nothing)`.
